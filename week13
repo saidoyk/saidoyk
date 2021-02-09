@@ -1,0 +1,93 @@
+
+
+
+
+def search(root, key):
+
+    if root is None :
+        print ("No, ", (key) ," was not in the tree.")
+        return root
+    if root.val == key:
+        print ("Yes, ",(key)," is in the tree.")
+        return root
+
+
+
+    if root.val < key:
+        return search(root.right, key)
+
+
+    return search(root.left, key)
+
+
+class Node:
+    def __init__(self, key):
+        self.left = None
+        self.right = None
+        self.val = key
+
+
+
+def insert(root, key):
+    if root is None:
+        return Node(key)
+    else:
+        if root.val == key:
+            return root
+        elif root.val < key:
+            root.right = insert(root.right, key)
+        else:
+            root.left = insert(root.left, key)
+    return root
+
+
+def deleteNode(root, key):
+    if root is None:
+        print ("No, ", (key) ," was not in the tree.")
+        return root
+    else:
+
+        if root.val < key:
+            root.right = deleteNode(root.right, key)
+        elif root.val > key:
+            root.left = deleteNode(root.left, key)
+        else :
+            if root.left is None:
+                temp = root.right
+                root = None
+                print(key, " is deleted")
+
+                return temp
+
+            elif root.right is None:
+                temp = root.left
+                root = None
+                print(key, " is deleted")
+                return temp
+            else:
+                print (" ssss ")
+
+    return root
+
+a=Node(20)
+a = insert(a, 15)
+a = insert(a, 10)
+a = insert(a, 40)
+a = insert(a, 70)
+print(search(a,90))
+y=1
+while True:
+    c=int(input("Make a choice... \n 1. Insert into tree. \n 2. Delete from tree. \n 3. Lookup Value. \n"))
+    if c==1:
+        while y==1:
+            b= int(input("insert? "))
+            a = insert(a,int(b))
+            y = int(input("entered 1 to continue insert"))
+        if y != 1:
+            break
+    elif c==2:
+        b= int(input("Value ? "))
+        a= deleteNode(a,b)
+    elif c==3:
+        b= int(input("Value ? "))
+        search(a,b)
