@@ -1,0 +1,240 @@
+size = (int(input("enter matrix size: "))) + 2
+matrix = []
+nameofp1, nameofp2 = input("enter first player's name: "), input("enter second player's name: ")
+player = 1
+print((" {}'s turn").format(nameofp1))
+sayip1 = 0
+sayip2 = 0
+
+
+def control():
+    # dikey
+    global sayip1
+    global sayip2
+    global player
+    if harf == ("s"):
+        if matrix[r + 1][c] == ("o") or matrix[r + 1][c] == ("O"):
+            if matrix[r + 2][c] == ("s") or matrix[r + 2][c] == ("S"):
+                if player == 1:
+                    sayip1 += 1
+                    player = 2
+                else:
+                    sayip2 += 1
+                    player = 1
+                matrix[r][c] = ("S")
+                matrix[r + 1][c] = ("O")
+                matrix[r + 2][c] = ("S")
+    if harf == ("s"):
+        if matrix[r - 1][c] == ("o") or matrix[r - 1][c] == ("O"):
+            if matrix[r - 2][c] == ("s") or matrix[r - 2][c] == ("S"):
+                if player == 1:
+                    sayip1 += 1
+                    player = 2
+                else:
+                    sayip2 += 1
+                    player = 1
+                matrix[r][c] = ("S")
+                matrix[r - 1][c] = ("O")
+                matrix[r - 2][c] = ("S")
+    if harf == ("o"):
+        if matrix[r - 1][c] == ("s") or matrix[r - 1][c] == ("S"):
+            if matrix[r + 1][c] == ("s") or matrix[r + 1][c] == ("S"):
+                if player == 1:
+                    sayip1 += 1
+                    player = 2
+                else:
+                    sayip2 += 1
+                    player = 1
+                matrix[r][c] = ("O")
+                matrix[r - 1][c] = ("S")
+                matrix[r + 1][c] = ("S")
+    # yatay
+    if harf == ("s"):
+        if matrix[r][c + 1] == ("o") or matrix[r][c + 1] == ("O"):
+            if matrix[r][c + 2] == ("s") or matrix[r][c + 2] == ("S"):
+                if player == 1:
+                    sayip1 += 1
+                    player = 2
+                else:
+                    sayip2 += 1
+                    player = 1
+                matrix[r][c] = ("S")
+                matrix[r][c + 1] = ("O")
+                matrix[r][c + 2] = ("S")
+    if harf == ("s"):
+        if matrix[r][c - 1] == ("o") or matrix[r][c - 1] == ("O"):
+            if matrix[r][c - 2] == ("s") or matrix[r][c - 2] == ("S"):
+                if player == 1:
+                    sayip1 += 1
+                    player = 2
+                else:
+                    sayip2 += 1
+                    player = 1
+                matrix[r][c] = ("S")
+                matrix[r][c - 1] = ("O")
+                matrix[r][c - 2] = ("S")
+    if harf == ("o"):
+        if matrix[r][c - 1] == ("s") or matrix[r][c - 1] == ("S"):
+            if matrix[r][c + 1] == ("s") or matrix[r][c + 1] == ("S"):
+                if player == 1:
+                    sayip1 += 1
+                    player = 2
+                else:
+                    sayip2 += 1
+                    player = 1
+                matrix[r][c] = ("O")
+                matrix[r][c - 1] = ("S")
+                matrix[r][c + 1] = ("S")
+    # capraz
+    if harf == ("s"):
+        if matrix[r + 1][c + 1] == ("o") or matrix[r + 1][c + 1] == ("O"):
+            if matrix[r + 2][c + 2] == ("s") or matrix[r + 2][c + 2] == ("S"):
+                if player == 1:
+                    sayip1 += 1
+                    player = 2
+                else:
+                    sayip2 += 1
+                    player = 1
+                matrix[r][c] = ("S")
+                matrix[r + 1][c + 1] = ("O")
+                matrix[r + 2][c + 2] = ("S")
+    if harf == ("s"):
+        if matrix[r - 1][c - 1] == ("o") or matrix[r - 1][c - 1] == ("O"):
+            if matrix[r - 2][c - 2] == ("s") or matrix[r - 2][c - 2] == ("S"):
+                if player == 1:
+                    sayip1 += 1
+                    player = 2
+                else:
+                    sayip2 += 1
+                    player = 1
+                matrix[r][c] = ("S")
+                matrix[r - 1][c - 1] = ("O")
+                matrix[r - 2][c - 2] = ("S")
+    if harf == ("s"):
+        if matrix[r + 1][c - 1] == ("o") or matrix[r + 1][c - 1] == ("O"):
+            if matrix[r + 2][c - 2] == ("s") or matrix[r + 2][c - 2] == ("S"):
+                if player == 1:
+                    sayip1 += 1
+                    player = 2
+                else:
+                    sayip2 += 1
+                    player = 1
+                matrix[r][c] = ("S")
+                matrix[r + 1][c - 1] = ("O")
+                matrix[r + 2][c - 2] = ("S")
+    if harf == ("s"):
+        if matrix[r - 1][c + 1] == ("o") or matrix[r - 1][c + 1] == ("O"):
+            if matrix[r - 2][c + 2] == ("s") or matrix[r - 2][c + 2] == ("S"):
+                if player == 1:
+                    sayip1 += 1
+                    player = 2
+                else:
+                    sayip2 += 1
+                    player = 1
+                matrix[r][c] = ("S")
+                matrix[r - 1][c + 1] = ("O")
+                matrix[r - 2][c + 2] = ("S")
+    if harf == ("o"):
+        if matrix[r - 1][c + 1] == ("s") or matrix[r - 1][c + 1] == ("S"):
+            if matrix[r + 1][c- 1] == ("s") or matrix[r + 1][c - 1] == ("S"):
+                if player == 1:
+                    sayip1 += 1
+                    player = 2
+                else:
+                    sayip2 += 1
+                    player = 1
+                matrix[r][c] = ("O")
+                matrix[r - 1][c + 1] = ("S")
+                matrix[r + 1][c - 1] = ("S")
+    if harf == ("o"):
+        if matrix[r - 1][c - 1] == ("s") or matrix[r - 1][c - 1] == ("S"):
+            if matrix[r + 1][c + 1] == ("s") or matrix[r + 1][c + 1] == ("S"):
+                if player == 1:
+                    sayip1 += 1
+                    player = 2
+                else:
+                    sayip2 += 1
+                    player = 1
+                matrix[r][c] = ("O")
+                matrix[r - 1][c - 1] = ("S")
+                matrix[r + 1][c + 1] = ("S")
+
+
+for i in range(size):
+    # creat empty matrix
+    a = []
+    for j in range(size):
+        a.append(" ")
+    matrix.append(a)
+# put X to the corners
+matrix[0][0] = "X"
+matrix[0][size - 1] = "X"
+matrix[size - 1][0] = "X"
+matrix[size - 1][size - 1] = "X"
+for i in range(1, len(matrix[0]) - 1):
+    # the numbers of the line
+    matrix[i][0] = "%s" % i
+    matrix[0][i] = "%s" % i
+    matrix[i][size - 1] = "%s" % i
+    matrix[size - 1][i] = "%s" % i
+for i in range(size):
+    print(matrix[i])
+while 1:
+    # Begin of the game input two cordinats
+    r = input("up to down: ")
+    c = input("left to right: ")
+    if not c and r:
+        break
+    try:
+        c = int(c)
+        r = int(r)
+    except ValueError:
+        print("enter an integer")
+        continue
+    # the cordinats check for limit of matrix
+    while r >= size or c >= size or r <= 0 or c <= 0:
+        print("Invalid location, try again")
+        r = int(input("up to down: "))
+        c = int(input("left to right: "))
+    while matrix[r][c] != (" "):
+        # the box check for empty or not
+        print("it's full try again")
+        r = int(input("up to down: "))
+        c = int(input("left to right: "))
+    harf = input("enter letter: ")
+    while harf != "s" and harf != "o":
+        harf = input("Invalid letter, try again:")
+
+    # put on the word to selected box
+    matrix[r][c] = (harf)
+    control()
+    # print the score board
+    print(str(nameofp1) + ": " + str(sayip1) + "  / " + (nameofp2) + " :" + str(sayip2))
+    # Find the players turn
+    for i in range(size):
+        print(matrix[i])
+    if player == 1:
+        player = 2
+    else:
+        player = 1
+
+    # print who play
+    oyun = 1
+    for i in range(len(matrix[0])):
+        for j in range(len(matrix[0])):
+            if matrix[i][j] == (" "):
+                oyun = 0
+    if oyun == 1:
+        print("game over")
+        if sayip1 > sayip2:
+            print(("{} WON THE GAME").format(nameofp1))
+        elif sayip2 > sayip1:
+            print(("{} WON THE GAME").format(nameofp2))
+        elif sayip1 == sayip2:
+            print("DRAW GG")
+        break
+
+    if player == 1:
+        print(("{}'s turn").format(nameofp1))
+    else:
+        print(("{}'s turn").format(nameofp2))
