@@ -1,0 +1,81 @@
+import time
+#PART A
+
+def dec2bin(number):
+    if number >= 1:
+        dec2bin(number//2)
+        print(number % 2, end = "")
+
+def bin2dec(number):
+    sum = 0
+    i = 0
+    while number!=0:
+        rem = number % 10
+        sum = sum + rem * pow(2,i)
+        number = int(number/10)
+        i=i+1
+    return sum
+def bin2hex(number):
+    newnumber=bin2dec(number)
+    temp = newnumber
+    hexa =[]
+    result=[]
+    while(temp!= 0):
+        rem = temp % 16
+        if rem < 10:
+            hexa.append(chr(rem+48))
+        else:
+            hexa.append(chr(rem + 55))
+        temp = int(temp/16)
+    j = 1
+    for i in hexa:
+        result.append(hexa[len(hexa)-j])
+        j=j+1
+    return result
+def __getDecDigit(digit):
+    digits = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F']
+    for x in range(len(digits)):
+        if digit ==digits[x]:
+            return x
+def hex2dec(hexnum):
+    decnum=0
+    p=0
+    for digit in range(len(hexnum), 0, -1):
+        decnum = decnum + 16 ** p * __getDecDigit(hexnum[digit-1])
+        p += 1
+    return (str(decnum))
+
+
+
+# Dec to Bin
+dec2bin(7)
+print(" ")
+
+
+# (BÄ°N TO dec)    print(bin2dec(101111))
+# Bin to Hex
+print(bin2hex(101111))
+
+# Hex to Dec
+print(hex2dec("A5"))
+
+# PART B (i  do not exactly understand how to do it)
+
+start = time.time()
+def dec2bin(number):
+    if number >= 1:
+        dec2bin(number//2)
+        print(number % 2, end = "")
+end=time.time()
+duration = end - start
+print(duration)
+
+
+
+
+#PART C
+
+# def_dec2bin = O(0),
+# def bin2hex = n+n which is O(n),
+# def hex2dec = n*n which is O(n**2)
+
