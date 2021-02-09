@@ -1,0 +1,79 @@
+import time
+import random
+#PART A
+def group_odd_even(integerlist):
+    even = []
+    evenindex = []
+    #print(len(integerlist))
+    for i in range(0, len(integerlist)):
+        if int(integerlist[i]) % 2 != 0:
+            a=1
+            #print(integerlist)
+        else:
+            evenindex.append(i)
+            even += [integerlist[i]]
+
+    sayac = 0
+    for i in evenindex:
+
+
+        integerlist.pop(int(i - sayac))
+        sayac += 1
+
+    integerlist += even
+    return integerlist
+
+
+def longest_mon_inc_seq(inplist):
+
+    thereismonolog = 0
+    exmonolog = 0
+    monolog = 0
+    sayac = 0
+    for i in range(0, len(inplist) - 1):
+        if sayac == 0:
+            startOFmono = i
+        if inplist[i] < inplist[i + 1]:
+            thereismonolog =1
+            monolog += 1
+            sayac = 1
+        else:
+
+            sayac = 0
+
+            if monolog > exmonolog:
+                exmonolog = monolog
+                monolog = 0
+                longestmon = startOFmono
+    if thereismonolog != 1:
+        return -1
+    else:
+        return longestmon
+
+
+
+a = [10, 8, 2, 5, 0, 2, 1]
+
+print(longest_mon_inc_seq(a))
+print(group_odd_even(a))
+
+#PART B
+
+def counter2():
+    time_list=[]
+    listOFrandoms=[]
+    time_start = time.time()
+    for i in range(10,1001):
+        a = random.randint(1,1001)
+        listOFrandoms.append((a))
+        group_odd_even(listOFrandoms)
+        time_end = time.time()
+        time_taken = time_end - time_start
+        time_list.append(time_taken)
+    # print(len(time_list))
+    return time_list
+
+print(counter2())
+
+#PART C /// def group_odd_even(integerlist): 2n which bigO (n)// def longest_mon_inc_seq : BigO (n)// def counter2: BigO(n)
+
