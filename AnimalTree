@@ -1,0 +1,208 @@
+from tkinter import *
+
+fox = ["vulpes vulpes","vulpes","canidae","carnivora","mammalie","chordata","animalia"]
+orangutan = ["pongo pygmaeus","pongo","hominidae","primates","mammalia","chordata","animalia"]
+cow = ["bos taurus","bos","bovidae","artiodactyla","mammalia","chordata","animalia"]
+bluewhlae = ["balaenoptera musculus","balaenoptera","balaenopteridae","cetacea","mammalia","chordata","animalia"]
+horse = ["equus caballus","equus","quidae","perissodactyla","mammalia","chordata","animalia",]
+flamingo = ["phoenicopterus chilenis","phoenicopterus","phoenicopteridae","ciconiiformes","aves","chordata","animalia",]
+lion = ["panthera leo","panthera","felidae","cornivora","mammalia","chordata","animalia",]
+cat = ["felis catus","felis","felidae","cornivora","mammalia","chordata","animalia",]
+leopard= ["panthera pardus","panthera","felidae","cornivora","mammalia","chordata","animalia",]
+cactus= ["cactus cereus","cereus","cactaceae", "caryophyllales", "magnoliopsida", "tracheophyta","plantae"]
+
+
+
+
+
+
+InfoLabel=[]
+AnimalTree = [fox,orangutan,cow,bluewhlae,horse,flamingo,lion,cat,leopard,cactus]
+for i in range(0, len(AnimalTree)):
+    InfoLabel.append(AnimalTree[i][0])
+Tree = ["species","genius","family","order","class","phylum","kingdom"]
+
+def searchEnteredKey():
+    finded=0
+
+    global label
+
+    a = e1.get()
+    while a not in Tree :
+        a = e1.get()
+
+    if a == "species":
+        b = e2.get()
+        for i in range(0,len(AnimalTree)):
+            if b == AnimalTree[i][0]:
+                label = Label(root, text= (str(b)+" is available in tree.  "))
+
+                label.grid(row=12, column=1)
+
+                finded = 1
+                break
+
+        if finded == 0:
+            label = Label(root, text= (str(b)+" is not available in tree"))
+            label.grid(row=12, column=1)
+
+    if a == "genius":
+        b = str(input("What genius will you search \n"))
+        for i in range(0,len(AnimalTree)):
+            if b == AnimalTree[i][1]:
+                label = Label(root, text=(str(b) + " is available in tree.  "))
+                label.grid(row=12, column=1)
+                finded = 1
+                break
+
+        if finded == 0:
+            label = Label(root, text=(str(b) + " is not available in tree"))
+            label.grid(row=12, column=1)
+    if a == "family":
+        b = str(input("What family will you search \n"))
+        for i in range(0,len(AnimalTree)):
+            if b == AnimalTree[i][2]:
+                label = Label(root, text=(str(b) + " is available in tree.  "))
+                label.grid(row=12, column=1)
+                finded = 1
+                break
+
+        if finded == 0:
+            label = Label(root, text=(str(b) + " is not available in tree"))
+            label.grid(row=12, column=1)
+    if a == "order":
+        b = str(input("What order will you search \n"))
+        for i in range(0,len(AnimalTree)):
+            if b == AnimalTree[i][3]:
+                label = Label(root, text=(str(b) + " is available in tree.  "))
+                label.grid(row=12, column=1)
+                finded = 1
+                break
+
+        if finded == 0:
+            label = Label(root, text=(str(b) + " is not available in tree"))
+            label.grid(row=12, column=1)
+    if a == "class":
+        b = str(input("What class will you search \n"))
+        for i in range(0,len(AnimalTree)):
+            if b == AnimalTree[i][4]:
+                label = Label(root, text=(str(b) + " is available in tree.  "))
+                label.grid(row=12, column=1)
+                finded = 1
+                break
+
+        if finded == 0:
+            label = Label(root, text=(str(b) + " is not available in tree"))
+            label.grid(row=12, column=1)
+    if a == "phylum":
+        b = str(input("What phylum will you search \n"))
+        for i in range(0,len(AnimalTree)):
+            if b == AnimalTree[i][5]:
+                label = Label(root, text=(str(b) + " is available in tree.  "))
+                label.grid(row=12, column=1)
+                finded = 1
+                break
+
+        if finded == 0:
+            label = Label(root, text=(str(b) + " is not available in tree"))
+            label.grid(row=12, column=1)
+    if a == "kingdom":
+        b = str(input("What kingdom will you search \n"))
+        for i in range(0,len(AnimalTree)):
+            if b == AnimalTree[i][6]:
+                label = Label(root, text=(str(b) + " is available in tree.  "))
+                label.grid(row=12, column=1)
+                finded=1
+                break
+        if finded ==0:
+            label = Label(root, text=(str(b) + " is not available in tree"))
+            label.grid(row=12, column=1)
+
+def comparingTwoSpecies():
+    global label22
+    global sameare
+
+    sameare=[]
+    sameare2=[]
+    find=0
+
+
+    a = e3.get()
+    b = e4.get()
+    for j in range (0,len(AnimalTree)):
+        if a==AnimalTree[j][0]:
+            f=j
+        elif b==AnimalTree[j][0]:
+            s=j
+    for m in range(1, len(Tree)):
+        if AnimalTree[f][m]== AnimalTree[s][m]:
+            sameare.append(Tree[m])
+            sameare2.append(AnimalTree[s][m])
+
+            find=1
+
+    for u in range(0,len(sameare)):
+        label22 = Label(root, text="They have same " + str(sameare[u]) + " which is; " + str(sameare2[u]) +"\n")
+        label22.grid(row=12+u, column=2)
+    if find == 0:
+        label22 = Label(root, text="there is not any relationship")
+        label22.grid(row=12, column=2)
+
+def clear():
+    label = Label(root,width=40, text=( "                        "))
+    label.grid(row=12, column=1)
+    for u in range(0, len(sameare)):
+        label22 = Label(root, width=40, text=("                    "))
+        label22.grid(row=12+u, column=2)
+
+
+root = Tk()
+root.title(" Animal Homework")
+root.geometry("1200x500")
+
+
+#.Searching an entered keyword
+e1 = Entry(root,width=50,borderwidth=5)
+e2 = Entry(root,width=50,borderwidth=5)
+labele1=Label(root, text=" <-- Enter which class will you search \n exp:"+str(Tree))
+labele1.grid(row=0, column=2)
+labele2=Label(root, text=" Enter it.")
+labele2.grid(row=1, column=2)
+e1.insert(0,"species")
+e2.insert(0,"felis catus")
+e1.grid(row=0, column=1)
+e2.grid(row=1, column=1)
+
+#Comparing two species
+e3 = Entry(root,width=50,borderwidth=5)
+e4 = Entry(root,width=50,borderwidth=5)
+e3.insert(0,"panthera pardus")
+e4.insert(0,"felis catus")
+
+labele3=Label(root, text=" Enter two species names and explains whether \n they are in the same genius or family or order \n or class or phylum or kingdom. ")
+labele3.grid(row=6,column=1)
+labelspace1=Label(root, text="           ")
+labelspace1.grid(row=4, column=1)
+labelspace2=Label(root, text=" ------------ \n   ")
+labelspace2.grid(row=7, column=1)
+labelspace3=Label(root, text=" ------------ \n   ")
+labelspace3.grid(row=7, column=2)
+e3.grid(row=5, column=1)
+e4.grid(row=5, column=2)
+
+
+button = Button(root, text="Searching an entered keyword", command=searchEnteredKey)
+button.grid(row=3,column=1)
+LabelInfo=Label(root,text=str(InfoLabel),font=("Helvatica",8))
+LabelInfo.grid(row=3,column=2)
+buttonclear = Button(root, text="clear", command=clear)
+buttonclear.grid(row=15,column=1)
+button2 = Button(root, text="Comparing two species", command=comparingTwoSpecies)
+button2.grid(row=6,column=2)
+
+
+
+
+root.mainloop()
+
+
