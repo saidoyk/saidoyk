@@ -1,0 +1,65 @@
+ppp=1
+while ppp==1:
+    import random
+
+    sal = int(input('saldiranin atacagi zar sayisi'))
+    sav = int(input('savunanın atacagi zar sayisi'))
+    a = random.randint(1, 6)
+    b = random.randint(1, 6)
+    if sal == 3:
+        c = random.randint(1, 6)
+    else:
+        c = 0
+    d = random.randint(1, 6)
+    if sav == 2:
+        e = random.randint(1, 6)
+    else:
+        e = 0
+    if a >= b:
+        if a >= c:
+            bigA = a
+            if b >= c:
+                bigB = b
+            else:
+                bigB = c
+    if b > a:
+        if b>=c:
+            bigA = b
+            if a >= c:
+                bigB = a
+            else:
+                bigB = c
+    if c > b:
+        if c>a:
+            bigA = c
+            if a >= b:
+                bigB = a
+            else:
+                bigB = b
+    if d > e:
+        savA = d
+        savB = e
+    else:
+        savA = e
+        savB = d
+    print('saldiran',a, b, c,'savunan', d, e,)
+    print()
+    if sav == 2:
+        if savA >= bigA:
+            if savB >= bigB:
+                print('2 SALDIRAN OLDU')
+            else:
+                print('KARSILIKLI 1 KISI OLDU')
+        elif bigA > savA:
+            if bigB > savB:
+                if sal==3:
+                    print('3 SAVUNMACI OLDU')
+                else:
+                    print('2 SAVUNMACI OLDU')
+            else:
+                print('KARSILIKLI 1 KISI OLDU')
+    if sav == 1:
+        if savA >= bigA:
+            print('1 SALDIRAN OLDU')
+        else:
+            print('1 SAVUNMACI OLDU')
