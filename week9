@@ -1,0 +1,155 @@
+
+import random
+
+import time
+def seq_search(inplist, searched_list):
+    pos = 0
+    found = False
+    while pos < len(inplist) and not found:
+        if inplist[pos] == searched_list[0]:
+            if (pos+1) == len(inplist):
+                print("Position of searched sublist:None")
+                break
+            elif inplist[pos+1] == searched_list[1]:
+                found = True
+                print("Position of searched sublist:" ,pos)
+            else:
+                print("Position of searched sublist:None")
+                break
+        else:
+            pos = pos+1
+test_list = [3,5,7,2,6,88,45,1,16,25]
+searchlist =[7,2]
+print(seq_search( test_list,searchlist))
+
+def     recur_seq_ordered_search( inplist, searched_list ):
+    pos = 0
+    found = False
+    stop = False
+    while pos < len(inplist) and not found and not stop:
+        if inplist[pos] == searched_list[0]:
+            if inplist[pos]> searched_list[0]:
+                stop = True
+                print("Position of searched sublist:None")
+                break
+            if (pos + 1) == len(inplist):
+                print("Position of searched sublist:None")
+                break
+            elif inplist[pos + 1] == searched_list[1]:
+                found = True
+                print("Position of searched sublist:", pos)
+            else:
+                print("Position of searched sublist:None")
+                break
+        else:
+            pos = pos + 1
+test_list = [3,5,7,2,6,88,45,3,5,7,2,6,88,45,1,16,3,5,7,2,6,88,45,1,16,3,5,7,2,6,88,45,1,16,3,5,7,2,6,88,45,1,16,3,5,7,2,6,88,45,1,16,3,5,7,2,6,88,45,1,16,3,5,7,2,6,88,45,1,16,3,5,7,2,6,88,45,1,16,3,5,7,2,6,88,45,1,16,1,16,253,5,7,2,6,88,45,1,16,3,5,7,2,6,88,45,1,16,3,5,7,2,6,88,45,1,16,3,5,7,2,6,88,45,1,16,3,5,7,2,6,88,45,1,16,3,5,7,2,6,88,45,1,16,3,5,7,2,6,88,45,1,16,3,5,7,2,6,88,45,1,16,3,5,7,2,6,88,45,1,16,3,5,7,2,6,88,45,1,16,3,5,7,2,6,88,45,1,16,3,5,7,2,6,88,45,1,16,]
+searchlist =[3,5]
+print(seq_search( test_list,searchlist))
+
+def     iter_bin_search( inplist, searched_list ):
+    first= 0
+    last= len(inplist)-1
+    found = False
+    while first <= last and not found:
+        midpoint =( first + last) //2
+        if inplist[midpoint] == searched_list[0]:
+
+            if (midpoint+1) == len(inplist):
+                print("Position of searched sublist:None")
+                break
+            elif inplist[midpoint+1] == searched_list[1]:
+                found = True
+                print("Position of searched sublist:" ,midpoint)
+
+            else:
+                print("Position of searched sublist:None")
+                break
+
+        else:
+            if searched_list[0]< inplist[midpoint]:
+                last = midpoint -1
+            else:
+                first = midpoint+1
+test_list = [3,5,7,2,6,88,45,3,5]
+searchlist =[6,88]
+print(iter_bin_search( test_list,searchlist))
+
+
+def recur_bin_search(inplist,searched_list):
+    if len(inplist)==0:
+        return False
+    else:
+        midpoint = len(inplist)//2
+    if inplist[midpoint]==searched_list[0]:
+        if (midpoint+1) == len(inplist):
+            print("Position of searched sublist:None")
+            return True
+        elif inplist[midpoint+1] == searched_list[1]:
+            print("Position of searched sublist:", midpoint)
+            return True
+        else:
+            print("Position of searched sublist:None")
+            return True
+    else:
+        if searched_list[0] < inplist[midpoint]:
+            return recur_bin_search(inplist[:midpoint],searched_list)
+        else:
+            return recur_bin_search(inplist[midpoint+1:],searched_list)
+
+
+test_list = [3,5,7,2,6,88,45,3,5]
+searchlist =[6,88]
+print(recur_bin_search( test_list,searchlist))
+
+
+exec_time_seq_search = []
+exec_time_recur_seq_search = []
+exec_time_iter_bin_search = []
+exec_time_recur_bin_search = []
+for n in range(5, 38, 5):
+    inplist = random.sample(range(0, 10 * n), n)
+    ordered_inplist = sorted(inplist)
+    seq_row = []
+    recur_sec_row = []
+    iter_bin_row = []
+    recur_bin_row = []
+    for m in range(1, n // 2):
+        searchedlist = random.sample(range(0, 10 * m), m)
+        ordered_searchedlist = sorted(searchedlist)
+        t1 = time.time()
+        seq_search(inplist, searchedlist)
+        t2 = time.time()
+        seq_row.append((t2 - t1) * 1000)  # Execution time in ms
+        t1 = time.time()
+        recur_seq_ordered_search(ordered_inplist, ordered_searchedlist)
+        t2 = time.time()
+        recur_sec_row.append((t2 - t1) * 1000)
+        t1 = time.time()
+        iter_bin_search(ordered_inplist, ordered_searchedlist)
+        t2 = time.time()
+        iter_bin_row.append((t2 - t1) * 1000)
+        t1 = time.time()
+        recur_bin_search(ordered_inplist, ordered_searchedlist)
+        t2 = time.time()
+        recur_bin_row.append((t2 - t1) * 1000)
+    exec_time_seq_search.append(seq_row)
+    exec_time_recur_seq_search.append(recur_sec_row)
+    exec_time_iter_bin_search.append(iter_bin_row)
+    exec_time_recur_bin_search.append(recur_bin_row)
+
+
+def print2d(list2d):
+    for i in range(len(list2d)):
+        print('[', end=' ')
+        for j in range(len(list2d[i])):
+            print(list2d[i][j], end=' ')
+        print(']')
+print("Execution time for iterative sequential search:")
+print2d(exec_time_seq_search)
+print("Execution time for recursive sequential search:")
+print2d(exec_time_recur_seq_search)
+print("Execution time for iterative binary search:")
+print2d(exec_time_recur_seq_search)
+print("Execution time for recursive binary search:")
+print2d(exec_time_recur_bin_search)
