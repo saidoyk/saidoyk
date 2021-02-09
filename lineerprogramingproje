@@ -1,0 +1,122 @@
+
+d1=55.2
+d2=	14.0
+d3=	53.4
+d4	=30.4
+d5	=36.6
+d6	=32.2
+d7	=38.4
+d8	=219.4
+d9	=157.4
+d10	=51.6
+d11	=45.8
+d12	=31.6
+d13	=40.2
+d14	=44.0
+d15	=35.4
+d16	=17.0
+d17	=19.8
+d18	=17.0
+d19	=32.0
+d20	=272.8
+d21	=14.4
+d22	=69.0
+d23	=68.0
+d24	=126.4
+d25	=15.0
+d26	=29.8
+d27	=312.4
+d28	=10.0
+d29	=76.6
+d30	=92.0
+d31	=189.4
+d32	=280.6
+d33	=318.2
+d34	=207.0
+cevrimsuresi=437
+
+Deger=[d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12,d13,d14,d15,d16,d17,d18,d19,d20,d21,d22,d23,d24,d25,d26,d27,d28,d29,d30,d31,d32,d33,d34]
+istasyonno=[]
+Gercek=[]
+
+P33=(d33)+(d34)
+P32=(d32)+(P33)
+P31=(d31)+(P33)
+P30=(d30)+(d31)+(P33)
+P29=(d29)+(P30)
+P28=(d28)+(P29)
+P27=(d27)+(P28)
+P26=(d26)+(P27)
+P25=(d25)+(P26)
+P24=(d24)+(P26)
+P23=(d23)+(P24)
+P22=(d22)+(P23)
+P21=(d21)+(P22)
+P20=(d20)+(P21)
+P19=(d19)+(P21)
+P18=(d18)+(P19)
+P17=(d17)+(P21)
+P16=(d16)+(P32)
+P15=(d15)+(P21)+(d25)
+P14=(d14)+(P15)+(d17)
+P13=(d13)+(P15)
+P12=(d12)+(P16)
+P11=(d11)+(P12)
+P10=(d10)+(P11)
+P9=(d9)+(P11)
+P8=(d8)+(P9)+(d10)+(d13)+(P14)+(d18)+(d19)+(d20)
+P7=(d7)+(P8)
+P6=(d6)+(P8)
+P5=(d5)+(P8)
+P4=(d4)+(P8)
+P3=(d3)+(P8)
+P2=(d2)+(P8)
+P1=(d1)+(P2)+(d3)+(d4)+(d5)+(d6)+(d7)
+
+
+def sort(nums):
+    for i in range(0, len(nums)):
+        for j in range(0, len(nums) - 1):
+            if nums[j] < nums[j + 1]:
+                nums[j], nums[j + 1] = nums[j + 1], nums[j]
+            else:
+                continue
+
+
+Eleman=[]
+T=[P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,P17,P18,P19,P20,P21,P22,P23,P24,P25,P26,P27,P28,P29,P30,P31,P32,P33,d34]
+K=[P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,P17,P18,P19,P20,P21,P22,P23,P24,P25,P26,P27,P28,P29,P30,P31,P32,P33,d34]
+sort(K)
+print(" ")
+print(K)
+for i in range (0,len(K)):
+    for j in range (0,len(K)):
+        if K[i]==T[j]:
+            Eleman.append(j+1)
+print(Eleman)
+print(" ")
+j=0
+for j in range(0,8):
+    cevrimsuresi = 437
+    for i in range (0,len(Eleman)):
+        if cevrimsuresi - Deger[Eleman[i]-1] > 0:
+            cevrimsuresi = cevrimsuresi - Deger[Eleman[i] - 1]
+            istasyonno.append(Eleman[i])
+
+
+    Gercek.append(istasyonno)
+    for p in istasyonno:
+        Eleman.remove(p)
+    istasyonno = []
+
+
+    print(cevrimsuresi)
+
+
+print(" ")
+for i in range (0,len(Gercek)):
+    print((i+1),". istasyona atanan elemanlar", (Gercek[i]) , "\n")
+
+
+
+
