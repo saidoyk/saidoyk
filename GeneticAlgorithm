@@ -1,1 +1,210 @@
 
+import random
+import numpy as np
+a=[[0,563,857,771,796,435],
+   [563,0,157,418,972,841],
+   [857,157,0,485,219,892],
+   [771,418,485,0,171,77],
+   [796,972,219,171,0,239],
+   [435,841,829,77,239,0]]
+
+ #population=[parent2,parent1]
+
+def distance(b):
+    sum=0
+    a = [[0, 563, 857, 771, 796, 435],
+         [563, 0, 157, 418, 972, 841],
+         [857, 157, 0, 485, 219, 892],
+         [771, 418, 485, 0, 171, 77],
+         [796, 972, 219, 171, 0, 239],
+         [435, 841, 829, 77, 239, 0]]
+    for i in range (0,6):
+        sum+=a[b[i]-1][b[i+1]-1]
+    return (sum)
+def distance2(b):
+    sum=0
+    a = [[0, 563, 857, 771, 796, 435],
+         [563, 0, 157, 418, 972, 841],
+         [857, 157, 0, 485, 219, 892],
+         [771, 418, 485, 0, 171, 77],
+         [796, 972, 219, 171, 0, 239],
+         [435, 841, 829, 77, 239, 0]]
+    for i in range (1,7):
+        sum+=a[b[i]-1][b[i+1]-1]
+    return (sum)
+
+#def add_population(a):
+   # t=population
+    #t.append(a)
+    #return t
+
+def createRoute(cityList):
+
+    route = random.sample(cityList, len(cityList))
+    start=route[0]
+    route.append(start)
+
+    return route
+
+def sort(A):
+    for i in range(0,len(A)):
+        for j in range(0,len(A)-1):
+            if A[j][0]> A[j+1][0]:
+                A[j],A[j+1]=A[j+1],A[j]
+            else:
+                continue
+    return A
+
+
+
+def addd_return(A):
+
+    start=A[0]
+    A.append(start)
+    return A
+
+def select_parent(A):
+    selected=[]
+    for i in range (0,10):
+        selected.append(A[i])
+    return (selected)
+
+
+def swapPositions(list, pos1, pos2):
+    print(pos1,pos2)
+    list[pos1], list[pos2] = list[pos2], list[pos1]
+
+    return list
+
+
+def crossover(parent1,parent2):
+
+
+    #parent1.pop(0)
+    #parent1.pop(-1)
+    #parent2.pop(0)
+    #parent2.pop(-1)
+    for tekrar in range(0,1):
+        child = [0, 0, 0, 0, 0, 0,0,99]
+        childP1 = []
+        childP2 = []
+        a = 0
+        b=0
+
+        geneA = random.randint(1,6)
+        geneB = random.randint(1,6)
+
+
+        startGene = min(geneA, geneB)
+        endGene = max(geneA, geneB)
+        print("kesim noktasi",startGene,endGene)
+
+        for i in range(startGene, endGene+1):
+            childP1.append(parent1[i])
+        for i in parent2:
+
+            if i not in childP1:
+                childP2.append(i)
+    #childP2 = [item for item in parent2 if item not in childP1]
+        #print(childP1,childP2)
+        for i in range(startGene,endGene+1):
+            child[i]=childP1[a]
+            a+=1
+            #childP1.pop(0)
+        print("gen2,gen1",childP2,childP1)
+        for i in range (0,len(parent1)):
+            if child[i]==0:
+
+                child[i]=childP2[b]
+                b+=1
+
+                #childP2.pop(0)
+
+        mutation(child)
+
+        child[-1]=(child[1])
+
+        child[0]=distance2(child)
+        print(child)
+
+
+
+
+
+    return child
+
+def mutation(A):
+    isTrue=random.randint(1,200)
+    if isTrue==1:
+        print("MUTASYON OLUYOR!!!")
+        selectedGen1=random.randint(1,6)
+        selectedGen2=random.randint(1,6)
+        A = swapPositions(A,selectedGen1,selectedGen2)
+    return A
+
+Routes=[]
+t=(1,2,3,4,5,6)
+for i  in range (0,10):
+   Routes.append(createRoute((t)))
+for i in range (0,len(Routes)):
+    Routes[i].insert(0,distance(Routes[i]))
+
+
+
+#for i in range (0,len(population)):
+ #   population[i].insert(0,distance(population[i]))
+#print(population)
+
+print(Routes)
+Routes=sort(Routes)
+print(Routes)
+The_best=select_parent(Routes)
+print(The_best)
+
+
+New_The_best=[]
+test=0
+sayacimiz=2
+while test<500 and sayacimiz>0:
+
+    for i in range(0, 9, 2):
+        print("i is", i)
+        New_The_best.append(crossover(The_best[i], The_best[i + 1]))
+        New_The_best.append(crossover(The_best[i], The_best[i + 1]))
+        New_The_best = sort(New_The_best)
+
+    eniyisi = New_The_best[0]
+    if eniyisi >= New_The_best[0] :
+        eniyisi=New_The_best[0]
+        sayacimiz=2
+    else:
+        sayacimiz-=1
+
+
+
+
+
+
+    print(New_The_best)
+    The_best=[]
+    for i in range(0,2):
+        for i in range(0,5):
+            The_best.append(New_The_best[i])
+    New_The_best = []
+    test += 1
+print("Bulunan En iyi Cozum",eniyisi)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
